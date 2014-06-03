@@ -1,0 +1,28 @@
+.page-header
+  %h1 Check-in
+
+- if error
+  .alert.alert-danger Oops! Could not check you in. Please enter a valid Twitter Username.
+
+%form{:action => url('/checkin'), :method => 'post', :role => 'form'}
+  .form-group
+    %label.control-label{:for => 'twitter_username'} Twitter Username
+    %input.form-control.input-lg{:type => 'text', :name => 'twitter_username', :id => 'twitter_username', :placeholder => 'Enter your Twitter username'}
+
+  .form-group
+    %label.control-label{:for => 'location'} Location
+    %select.form-control.input-lg{:name => 'location', :id => 'location'}
+      - locations.each do |location|
+        %option{:value => location['_id']}= location['name']
+
+  %hr
+
+  .row
+    .col-xs-6
+      %a.btn.btn-default{:href => url("/")}
+        %i.fa.fa-fw.fa-chevron-left
+        Back to Home
+    .col-xs-6.text-right
+      %button.btn.btn-primary{:type => 'submit'} 
+        %i.fa.fa-fw.fa-check-square-o
+        Check-in

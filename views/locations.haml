@@ -1,0 +1,15 @@
+.page-header
+  %h1 Locations
+
+.list-group
+  - locations.each do |location|    
+    %a.list-group-item{:href => url("/location/#{location['slug']}")}
+      %span.badge= location['checkins'] ? location['checkins'].length : '0'
+      %i.fa.fa-fw.fa-map-marker
+      = location['name']
+
+%hr        
+
+%a.btn.btn-default{:href => url("/")}
+  %i.fa.fa-fw.fa-chevron-left
+  Back to Home

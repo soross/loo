@@ -1,0 +1,28 @@
+.page-header
+  %h1
+    = location['name']
+    .pull-right.label.label-success 
+      #{checkins.length}
+      = checkins.length == 1 ? 'person' : 'people'
+      here
+
+- if checkins.length > 0
+  .row.text-center
+    - checkins.each do |checkin|
+      .col-xs-6.col-sm-3.col-md-2
+        .checkin
+          %a{:href => checkin['twitter_url']}
+            %img{:src => checkin['twitter_pic']}
+            %strong> @#{checkin['twitter_username']}          
+          %br
+          %em.small #{time_ago_in_words(checkin['timestamp'])} ago
+- else
+  %p 
+    No-one has checked in to this location yet.
+    %a{:href => url("/checkin")} Be the first to check in.
+
+%hr
+
+%a.btn.btn-default{:href => url("/location")}
+  %i.fa.fa-fw.fa-chevron-left
+  Back to Locations

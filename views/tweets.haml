@@ -1,0 +1,32 @@
+.page-header
+  %h1 
+    Tweets #myconf2014
+    .label.label-default.pull-right 
+      Last updated #{updated} 
+      = updated == 1 ? 'minute' : 'minutes'
+      ago
+
+%ul.list-group.tweets
+  - tweets.each do |tweet|
+    %li.list-group-item
+      .row
+        .col-xs-2.col-sm-1.text-center
+          %a{:href => tweet['user_url']}
+            %img{:src => tweet['twitter_pic']}>
+        .col-xs-10.col-sm-11
+          %h4.list-group-item-heading
+            %a{:href => tweet['user_url']}
+              @#{tweet['twitter_username']}          
+            .text-muted.small= tweet['user_name']
+          %p.list-group-item-text            
+            = tweet['text']
+          %em.text-muted.small #{time_ago_in_words(tweet['tweet_time'])} ago
+            
+
+%em.text-muted Tweets update every 5 minutes.
+
+%hr
+
+%a.btn.btn-default{:href => url("/")}
+  %i.fa.fa-fw.fa-chevron-left
+  Back to Home

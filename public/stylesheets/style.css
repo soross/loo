@@ -1,0 +1,24 @@
+body {
+  padding-top: 70px;
+}
+
+.activity img {
+  width: 24px;
+  height: 24px;
+}
+
+.checkin {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.checkin img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+h1 .label {
+  margin-top: 10px;
+  font-size: 14px;
+}

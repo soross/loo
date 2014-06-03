@@ -1,0 +1,8 @@
+applications:
+- name: myconf2014
+  host: myconf2014
+  disk: 1024M
+  path: .
+  domain: ng.bluemix.net
+  mem: 128M
+  instances: 1

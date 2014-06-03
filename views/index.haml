@@ -1,0 +1,30 @@
+.jumbotron
+  %h1 Welcome to MyConf 2014!
+  %p 
+    You can use this app to check in to one of the conference locations, 
+    see who else has checked in and view tweets about the conference.
+  %p
+    %a.btn.btn-primary.btn-lg{:role => "button", :href => url('/checkin')} 
+      %i.fa.fa-fw.fa-check-square-o
+      Check in
+
+%h2 Activity Stream
+
+%ul.list-group.activity
+  - if checkins.length > 0
+    - checkins.each do |checkin|
+      %li.list-group-item
+        .row
+          .col-sm-6
+            %a{:href => checkin['twitter_url']}
+              %img{:src => checkin['twitter_pic']}>
+            %a{:href => checkin['twitter_url']}
+              %strong> @#{checkin['twitter_username']}
+            checked in at
+            %a{:href => url("/location/#{checkin['location']['slug']}")}= checkin['location']['name']
+          .col-sm-6.text-right.text-muted
+            %em #{time_ago_in_words(checkin['timestamp'])} ago
+  - else
+    %li.list-group-item
+      %em No activity to display.
+      %a{:href => url("/checkin")} Be the first to check in!
